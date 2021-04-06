@@ -5,11 +5,13 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import io from "socket.io-client";
 import queryString from "query-string";
-import { Input, message } from "antd";
+import { Input } from "antd";
+
+import { API_URL, ENDPOINT_URL, TOKEN } from "../../env";
 
 import "./Notes.css";
 
-const ENDPOINT = "http://localhost:3000";
+const ENDPOINT = ENDPOINT_URL;
 
 var socket;
 toast.configure();
@@ -19,15 +21,12 @@ const { TextArea } = Input;
 export const Notes = ({ location }) => {
   const handleBody = (newBody) => {
     setBody(newBody.target.value);
-    fetch(
-      `http://localhost:41184/notes/${room}?token=4f1ccc42bc33967c6d0100f4428105c4d0669df0e933e6facc84001dbb39a44856eddc8ecb5698921788045c28630a1d33f7c10787198c7b8e9e9c42b5d3dd69`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          body: newBody.target.value,
-        }),
-      }
-    ).then((res) => {
+    fetch(`${API_URL}/notes/${room}?token=${TOKEN}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        body: newBody.target.value,
+      }),
+    }).then((res) => {
       socket.emit("sendBody", newBody.target.value, () => {
         console.log("New Body Sent");
       });
@@ -35,15 +34,12 @@ export const Notes = ({ location }) => {
   };
   const handleTitle = (newTitle) => {
     setTitle(newTitle.target.value);
-    fetch(
-      `http://localhost:41184/notes/${room}?token=4f1ccc42bc33967c6d0100f4428105c4d0669df0e933e6facc84001dbb39a44856eddc8ecb5698921788045c28630a1d33f7c10787198c7b8e9e9c42b5d3dd69`,
-      {
-        method: "PUT",
-        body: JSON.stringify({
-          title: newTitle.target.value,
-        }),
-      }
-    ).then((res) => {
+    fetch(`${API_URL}/notes/${room}?token=${TOKEN}`, {
+      method: "PUT",
+      body: JSON.stringify({
+        title: newTitle.target.value,
+      }),
+    }).then((res) => {
       socket.emit("sendTitle", newTitle.target.value, () => {
         console.log("New Title Sent");
       });

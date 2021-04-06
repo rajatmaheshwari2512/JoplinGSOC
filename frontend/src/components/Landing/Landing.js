@@ -2,6 +2,8 @@ import React, { useEffect, useState } from "react";
 import fetch from "cross-fetch";
 import "./Landing.css";
 
+import { API_URL, TOKEN } from "../../env";
+
 import { NoteSelection } from "./NoteSelection";
 
 import { Form, Button, Input } from "antd";
@@ -13,12 +15,9 @@ export const Landing = () => {
     setName(values.name);
   };
   const getNotes = () => {
-    fetch(
-      "http://localhost:41184/notes?token=4f1ccc42bc33967c6d0100f4428105c4d0669df0e933e6facc84001dbb39a44856eddc8ecb5698921788045c28630a1d33f7c10787198c7b8e9e9c42b5d3dd69",
-      {
-        method: "GET",
-      }
-    )
+    fetch(`${API_URL}/notes?token=${TOKEN}`, {
+      method: "GET",
+    })
       .then((resp) => {
         return resp.json();
       })
