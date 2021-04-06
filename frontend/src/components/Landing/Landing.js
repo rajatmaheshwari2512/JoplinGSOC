@@ -6,7 +6,7 @@ import { API_URL, TOKEN } from "../../env";
 
 import { NoteSelection } from "./NoteSelection";
 
-import { Form, Button, Input } from "antd";
+import { Form, Button, Input, Row, List } from "antd";
 
 export const Landing = () => {
   var [result, setResult] = useState(null);
@@ -30,9 +30,12 @@ export const Landing = () => {
   }, []);
   return (
     <div className="main-wrapper">
-      <h1 className="choice-explain">Select which Note you want to work on</h1>
+      <h1 style={{ left: "60%" }} className="choice-explain">
+        Select which Note you want to work on
+      </h1>
       <Form className="get-name" name="name" onFinish={handleName}>
         <Form.Item
+          style={{ width: "50%" }}
           label="Name"
           name="name"
           rules={[
@@ -51,10 +54,27 @@ export const Landing = () => {
         </Form.Item>
       </Form>
       <div className="all-notes">
-        {result &&
-          result.items.map((i) => {
-            return <NoteSelection name={name} title={i.title} id={i.id} />;
-          })}
+        {result && (
+          <Row>
+            <List
+              grid={{
+                gutter: 16,
+                xs: 1,
+                sm: 2,
+                md: 4,
+                lg: 4,
+                xl: 6,
+                xxl: 3,
+              }}
+              dataSource={result.items}
+              renderItem={(item) => (
+                <List.Item>
+                  <NoteSelection name={name} title={item.title} id={item.id} />
+                </List.Item>
+              )}
+            />
+          </Row>
+        )}
       </div>
     </div>
   );

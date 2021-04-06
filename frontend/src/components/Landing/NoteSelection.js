@@ -8,11 +8,12 @@ export const NoteSelection = ({ title, id, name }) => {
       title={title}
       className={id}
       id={id}
-      style={{ width: 300, marginBottom: "5rem" }}
+      style={{ width: "100%", marginBottom: "5rem" }}
     >
-      <p>Lorem Ipsum</p>
-      <p>Lorem Ipsum</p>
-      <p>Lorem Ipsum</p>
+      <p>The ID Of this Room is:</p>
+      <p>
+        <b>{id}</b>
+      </p>
       <Link
         onClick={(e) => (!name ? e.preventDefault() : null)}
         to={`/notes?name=${name}&room=${id}`}
