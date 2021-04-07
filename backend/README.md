@@ -1,17 +1,17 @@
-# Welcome to Frontend of Realtime Note Starter Project 👋
+# Welcome to Backend of Realtime Note Starter Project 👋
 
-> These are the frontend files of my proposal to the Joplin Organisation for the Collaborative Notes Idea
+> These are the backend files of my proposal to the Joplin Organisation for the Collaborative Notes Idea
 
 ## Install
 
 ```sh
-yarn install
+npm install
 ```
 
 ## Usage
 
 ```sh
-yarn start
+npm start
 ```
 
 ## Author
