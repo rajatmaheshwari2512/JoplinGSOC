@@ -20,6 +20,14 @@ cd backend && npm install
 ## Usage
 
 - The backend must be run first, and runs on port 3000, or you can change the variable names in the **env.js** file
+- It is also imporant to note that since the Web Clipper server listens only on the local network, you will need to setup a TCP Tunnel
+- I recommend using socat, once the Web Clipper server is running, all you need to do is
+
+```sh
+socat tcp-listen:41185,reuseaddr,fork tcp:localhost:41184
+```
+
+- This Command ensures that the port 41184 on your localhost is forwarded and made available to all the other devices on your local network
 
 ```sh
 cd backend && npm start
